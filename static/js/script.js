@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const apiKey = process.env.NETLIFY_API_KEY;
     var map = L.map('map', { zoomControl: false }).setView([51.505, -0.09], 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -26,9 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let apiUrl;
         if (domainRegexPattern.test(searchInput)) {
-            apiUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=at_4vUxgnGDauF1cM1wq6dyZhhtJkxq8&domain=${searchInput}`;
+            apiUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&domain=${searchInput}`;
         } else if (ipAddressRegexPattern.test(searchInput)) {
-            apiUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=at_4vUxgnGDauF1cM1wq6dyZhhtJkxq8&ipAddress=${searchInput}`;
+            apiUrl = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${searchInput}`;
         } else {
             alert("Invaild IP Address or domain !");
             return;
